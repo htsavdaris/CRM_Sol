@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM_App", "CRM_App\CRM_App.csproj", "{08EF32BC-3D4A-4117-9263-79B9F7D90E68}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BA216E62-84B6-4C6F-A1A7-235F167761E1} = {BA216E62-84B6-4C6F-A1A7-235F167761E1}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM_DB", "CRM_DB\CRM_DB.csproj", "{BA216E62-84B6-4C6F-A1A7-235F167761E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08EF32BC-3D4A-4117-9263-79B9F7D90E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08EF32BC-3D4A-4117-9263-79B9F7D90E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08EF32BC-3D4A-4117-9263-79B9F7D90E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08EF32BC-3D4A-4117-9263-79B9F7D90E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA216E62-84B6-4C6F-A1A7-235F167761E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA216E62-84B6-4C6F-A1A7-235F167761E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA216E62-84B6-4C6F-A1A7-235F167761E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA216E62-84B6-4C6F-A1A7-235F167761E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6165EE8D-79C1-4FE8-86E1-90B540672C84}
+	EndGlobalSection
+EndGlobal
