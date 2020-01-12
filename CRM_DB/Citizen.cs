@@ -30,8 +30,17 @@ namespace CRM_DB
 
     public class CitizenDac : BaseDac
     {
+
+        public const string SqlTableName = "Citizen";
+        public const string SqlSelectCommand = "SELECT * FROM " + SqlTableName + " ";
+
         public CitizenDac()
         {
+        }
+        
+        public CitizenDac(string ConnectionString)
+        {
+            Connection = ConnectionFactory.createConnection(ConnectionString);
         }
 
         public CitizenDac(IDbConnection connection)
@@ -56,6 +65,67 @@ namespace CRM_DB
             var citizen = Connection.Get<Citizen>(id);
             return citizen;                
         }
+
+        public List<Citizen> GetAll()
+        {
+            var citizenList = Connection.GetAll<Citizen>().AsList();
+            return citizenList;
+        }
+
+        public Citizen GetByAFM(string AFM)
+        {
+            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE AFM=@AFM", new { AFM = AFM });
+            return citizenList;
+        }
+
+        public Citizen GetByAMKA(string AMKA)
+        {
+            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE AMKA=@AMKA", new { AMKA = AMKA });
+            return citizenList;
+        }
+        public Citizen GetByKinito(string Kinito)
+        {
+            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE Kinito=@Kinito", new { Kinito = Kinito });
+            return citizenList;
+        }
+
+        public Citizen GetByEmail(string eMail)
+        {
+            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE eMail=@eMail", new { eMail = eMail });
+            return citizenList;
+        }
+
+        public Citizen GetByLogin(string login)
+        {
+            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE login=@login", new { login = login });
+            return citizenList;
+        }
+
+        public List<Citizen> GetLikeByEponimo(string Eponimo)
+        {
+            var citizenList = Connection.Query<Citizen>(SqlSelectCommand + " WHERE Eponimo like @Eponimo", new { Eponimo = Eponimo }).AsList();
+            return citizenList;
+        }
+
+        public long Insert(Citizen citizen)
+        {
+            var identity = Connection.Insert<Citizen>(citizen);
+            return identity;
+        }
+
+        public bool Update(Citizen citizen)
+        {
+            var isSuccess = Connection.Update<Citizen>(citizen);
+            return isSuccess;
+        }
+
+        public bool Delete(Citizen citizen)
+        {
+            var isSuccess = Connection.Delete<Citizen>(citizen);
+            return isSuccess;
+        }
+
+
 
     }
 

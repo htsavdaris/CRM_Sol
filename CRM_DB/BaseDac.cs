@@ -8,12 +8,19 @@ namespace CRM_DB
 {
     public partial class BaseDac : IDisposable
     {
+        private string _connectionString;
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
         protected BaseDac()
         {
             Connection = new SqlConnection();
+        }
+
+        public string ConnectionString
+        {
+            get { return _connectionString; }
+            protected set { _connectionString = value; }
         }
 
         public IDbConnection Connection
