@@ -22,28 +22,44 @@ namespace CRM_App.Controllers
 
         // GET: api/Citizen
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<List<Citizen>> Get()
         {
-            return new string[] { "value1", "value2" };
+            string connStr = configuration.GetConnectionString("DefaultConnection");
+            List<Citizen> citizenList;
+            CitizenDac dac = new CitizenDac(connStr);
+            citizenList = dac.GetAll();
+            return Ok(citizenList);
         }
 
         // GET: api/Citizen/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public ActionResult<Citizen> Get(long id)
         {
-            return "value";
+            string connStr = configuration.GetConnectionString("DefaultConnection");
+            Citizen citizen;
+            CitizenDac dac = new CitizenDac(connStr);
+            citizen = dac.Get(id);
+            return Ok(citizen);
         }
 
         // POST: api/Citizen
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Citizen citizen)
         {
+            string connStr = configuration.GetConnectionString("DefaultConnection");
+            CitizenDac dac = new CitizenDac(connStr);
+            long id= dac.Insert(citizen);
+            return CreatedAtRoute("Citizen", new { id = id }, citizen);
         }
 
         // PUT: api/Citizen/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Citizen citizen)
         {
+            string connStr = configuration.GetConnectionString("DefaultConnection");
+            CitizenDac dac = new CitizenDac(connStr);
+            bool isSuccess = dac.Update(citizen);
+            return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
