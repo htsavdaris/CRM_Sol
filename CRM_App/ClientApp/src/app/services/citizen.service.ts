@@ -29,32 +29,32 @@ export class CitizenService {
       );
   }
 
-  getCitizen(postId: number): Observable<Citizen> {
-    return this.http.get<Citizen>(this.myAppUrl + this.myApiUrl + postId)
+  getCitizen(citizenid: number): Observable<Citizen> {
+    return this.http.get<Citizen>(this.myAppUrl + this.myApiUrl + citizenid)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  saveCitizen(blogPost): Observable<Citizen> {
-    return this.http.post<Citizen>(this.myAppUrl + this.myApiUrl, JSON.stringify(blogPost), this.httpOptions)
+  saveCitizen(citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(this.myAppUrl + this.myApiUrl, JSON.stringify(citizen), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  updateCitizen(postId: number, blogPost): Observable<Citizen> {
-    return this.http.put<Citizen>(this.myAppUrl + this.myApiUrl + postId, JSON.stringify(blogPost), this.httpOptions)
+  updateCitizen(citizenid: number, citizen): Observable<Citizen> {
+    return this.http.put<Citizen>(this.myAppUrl + this.myApiUrl + citizenid, JSON.stringify(citizen), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  deleteCitizen(postId: number): Observable<Citizen> {
-    return this.http.delete<Citizen>(this.myAppUrl + this.myApiUrl + postId)
+  deleteCitizen(citizenid: number): Observable<Citizen> {
+    return this.http.delete<Citizen>(this.myAppUrl + this.myApiUrl + citizenid)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
