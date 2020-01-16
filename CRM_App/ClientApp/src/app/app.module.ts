@@ -12,7 +12,8 @@ import { ForeasService } from './services/foreas.service';
 import { CitizenlistComponent } from './components/citizen/citizenlist/citizenlist.component';
 import { ForeaslistComponent } from './components/foreas/foreaslist/foreaslist.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component'
+import { RegisterComponent } from './components/auth/register/register.component';
+import { NavigationBarComponent } from './components/nav/navigation-bar/navigation-bar.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     CitizenlistComponent,
     ForeaslistComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,

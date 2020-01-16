@@ -112,6 +112,16 @@ namespace CRM_DB
             var identity = Connection.Insert<Citizen>(citizen);
             return identity;
         }
+        
+        public bool Register(Citizen citizen)
+        {
+            var identity = Connection.Insert<Citizen>(citizen);
+            return true;
+        }
+        public Citizen Authenticate(string Login, string nonHasheddPassword)
+        {
+            return null;
+        }
 
         public bool Update(Citizen citizen)
         {
