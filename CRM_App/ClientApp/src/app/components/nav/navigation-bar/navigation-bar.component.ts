@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent implements OnInit {
+  @Output() toggleSidenav = new EventEmitter<void>();
+  private returnUrl = '/';
 
   constructor() { }
 
