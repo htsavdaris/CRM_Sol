@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using CRM_DB;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRM_App.Controllers
 {
@@ -21,49 +22,57 @@ namespace CRM_App.Controllers
         }
 
         // GET: api/Citizen
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public ActionResult<List<Citizen>> Get()
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
             List<Citizen> citizenList;
-            CitizenDac dac = new CitizenDac(connStr);
-            citizenList = dac.GetAll();
-            return Ok(citizenList);
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                citizenList = dac.GetAll();
+                return Ok(citizenList);
+            }
         }
 
         // GET: api/Citizen/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "Get"), AllowAnonymous]
         public ActionResult<Citizen> Get(long id)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
             Citizen citizen;
-            CitizenDac dac = new CitizenDac(connStr);
-            citizen = dac.Get(id);
-            return Ok(citizen);
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                citizen = dac.Get(id);
+                return Ok(citizen);
+            }
         }
 
         // POST: api/Citizen
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public IActionResult Post([FromBody] Citizen citizen)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            CitizenDac dac = new CitizenDac(connStr);
-            long id= dac.Insert(citizen);
-            return CreatedAtRoute("Citizen", new { id = id }, citizen);
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                long id = dac.Insert(citizen);
+                return CreatedAtRoute("Citizen", new { id = id }, citizen);
+            }
         }
 
         // PUT: api/Citizen/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), AllowAnonymous]
         public IActionResult Put(int id, [FromBody] Citizen citizen)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            CitizenDac dac = new CitizenDac(connStr);
-            bool isSuccess = dac.Update(citizen);
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                bool isSuccess = dac.Update(citizen);
+            }
             return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), AllowAnonymous]
         public void Delete(int id)
         {
         }

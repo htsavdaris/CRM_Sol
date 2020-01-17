@@ -32,8 +32,12 @@ namespace CRM_App.Controllers
         public IActionResult Authenticate([FromBody]UserAuth userDto)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            CitizenDac dac = new CitizenDac(connStr);
-            var user = dac.Authenticate(userDto.login, userDto.password);
+            Citizen user;
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                user = dac.Authenticate(userDto.login, userDto.password);
+            }
+                
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
