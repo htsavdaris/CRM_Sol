@@ -18,6 +18,7 @@ import {
   MatChipsModule,
   MatTooltipModule,
   MatTableModule,
+  MatTableDataSource,
   MatPaginatorModule,
   MatMenuModule
 } from '@angular/material';

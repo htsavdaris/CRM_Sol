@@ -8,25 +8,36 @@ import { Citizen } from '../models/citizen';
   providedIn: 'root'
 })
 export class CitizenService {
-  myAppUrl: string;
+  public myAppUrl: string;
   myApiUrl: string;
+  ocitizenList: Array<Citizen>;
+  ocitizen: Citizen;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
     })
   };
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.myAppUrl = baseUrl;
+  constructor(private http: HttpClient) {
+   
+    this.myAppUrl = 'http://localhost:5000/';
+    console.log(this.myAppUrl);
     this.myApiUrl = 'api/Citizen/';
   }
 
 
-  getCitizens(): Observable<Citizen[]> {
-    return this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandler)
-      );
+  //getCitizens(): Observable<Citizen[]> {
+  //  return this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
+  //    .pipe(
+  //      retry(1),
+  //      catchError(this.errorHandler)
+  //    );
+  //}
+  getCitizens(): Array<Citizen> {
+    this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
+      .subscribe((data) => {
+        this.ocitizenList = data;
+      });
+    return this.ocitizenList;      
   }
 
   getCitizen(citizenid: number): Observable<Citizen> {
