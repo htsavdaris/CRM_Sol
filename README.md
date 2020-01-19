@@ -1,0 +1,9 @@
+
+
+\CRM_App>ng new ClientApp
+
+\ClientApp>npm install --save @angular/material @angular/cdk @angular/core @angular/common
+
+\ClientApp>ng g class models/citizen
+
+ng g c components/nav/nav --module=app.module.ts
