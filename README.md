@@ -7,3 +7,4 @@
 \ClientApp>ng g class models/citizen
 
 ng g c components/nav/nav --module=app.module.ts
+ng g c components/citizen/citizen --module=app.module.ts
