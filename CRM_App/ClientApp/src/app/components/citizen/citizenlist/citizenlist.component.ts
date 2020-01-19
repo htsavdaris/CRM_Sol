@@ -14,15 +14,18 @@ import { MatTableDataSource } from '@angular/material';
 export class CitizenlistComponent implements OnInit {
 
   public citizenlist= new MatTableDataSource<Citizen>();
-  public displayedColumns: string[] = ['CitizenID', 'AMKA', 'AFM', 'Onoma', 'Eponimo'];
-
-  constructor(private citizenService: CitizenService) {
+  public displayedColumns: string[] = ['CitizenID', 'AMKA', 'AFM', 'Onoma', 'Eponimo', 'Actions'];
+    constructor(private citizenService: CitizenService) {
   
   }
 
   ngOnInit() {
-    this.citizenlist.data = this.citizenService.getCitizens(); 
-   
+    this.citizenService.getCitizens()
+      .subscribe(data => {
+        console.log(data);
+        this.citizenlist.data = data;
+      });
+    
   }
 
  

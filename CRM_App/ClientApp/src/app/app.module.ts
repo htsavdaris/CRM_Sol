@@ -14,7 +14,8 @@ import { ForeaslistComponent } from './components/foreas/foreaslist/foreaslist.c
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NavigationBarComponent } from './components/nav/navigation-bar/navigation-bar.component';
-import { NavComponent } from './components/nav/nav/nav.component'
+import { NavComponent } from './components/nav/nav/nav.component';
+import { CitizenComponent } from './components/citizen/citizen/citizen.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavComponent } from './components/nav/nav/nav.component'
     LoginComponent,
     RegisterComponent,
     NavigationBarComponent,
-    NavComponent
+    NavComponent,
+    CitizenComponent
   ],
   imports: [
     BrowserModule,

@@ -18,26 +18,19 @@ export class CitizenService {
     })
   };
   constructor(private http: HttpClient) {
-   
+    //this.myAppUrl = 'http://localhost:57653/';
     this.myAppUrl = 'http://localhost:5000/';
-    console.log(this.myAppUrl);
     this.myApiUrl = 'api/Citizen/';
   }
 
 
-  //getCitizens(): Observable<Citizen[]> {
-  //  return this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
-  //    .pipe(
-  //      retry(1),
-  //      catchError(this.errorHandler)
-  //    );
-  //}
-  getCitizens(): Array<Citizen> {
-    this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
-      .subscribe((data) => {
-        this.ocitizenList = data;
-      });
-    return this.ocitizenList;      
+  
+  getCitizens(): Observable<Citizen[]> {
+    return this.http.get<Citizen[]>(this.myAppUrl + this.myApiUrl)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   getCitizen(citizenid: number): Observable<Citizen> {

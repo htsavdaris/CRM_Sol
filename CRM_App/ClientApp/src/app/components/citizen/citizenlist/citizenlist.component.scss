@@ -1,5 +1,6 @@
 table {
-  width: 100%;
+  width: 70%;
+  height: auto;
   overflow-x: auto;
   overflow-y: hidden;
   min-width: 500px;
@@ -8,4 +9,10 @@ table {
 th.mat-header-cell {
   text-align: left;
   max-width: 300px;
+}
+
+.mainpanel
+{
+    padding:8px;
+
 }
