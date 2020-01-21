@@ -15,7 +15,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NavigationBarComponent } from './components/nav/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav/nav.component';
-import { CitizenComponent } from './components/citizen/citizen/citizen.component'
+import { CitizenComponent } from './components/citizen/citizen/citizen.component';
+import { ForeasComponent } from './components/foreas/foreas/foreas.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CitizenComponent } from './components/citizen/citizen/citizen.component
     RegisterComponent,
     NavigationBarComponent,
     NavComponent,
-    CitizenComponent
+    CitizenComponent,
+    ForeasComponent
   ],
   imports: [
     BrowserModule,
