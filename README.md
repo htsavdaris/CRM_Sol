@@ -8,3 +8,7 @@
 
 ng g c components/nav/nav --module=app.module.ts
 ng g c components/citizen/citizen --module=app.module.ts
+ng g c components/citizen/citizen --module=app.module.ts
+
+ng g c components/foreas/foreaslist --module=app.module.ts
+ng g c components/foreas/foreas --module=app.module.ts
