@@ -35,7 +35,7 @@ namespace CRM_App.Controllers
         }
 
         // GET: api/Citizen/5
-        [HttpGet("{id}", Name = "Get"), AllowAnonymous]
+        [HttpGet("{id}"), AllowAnonymous]
         public ActionResult<Citizen> Get(long id)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");

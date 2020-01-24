@@ -32,8 +32,8 @@ namespace CRM_App.Controllers
             }
         }
 
-        // GET: api/Citizen/5
-        [HttpGet("{id}", Name = "Get"), AllowAnonymous]
+        // GET: api/Foreas/5
+        [HttpGet("{id}"), AllowAnonymous]
         public ActionResult<Foreas> Get(long id)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
@@ -45,7 +45,7 @@ namespace CRM_App.Controllers
             }
         }
 
-        [HttpGet("{treecode}", Name = "Get"), AllowAnonymous]
+        [HttpGet("{treecode}", Name = "GetTree"), AllowAnonymous]
         public ActionResult<List<Foreas>> Get(string Treecode)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
