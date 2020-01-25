@@ -97,8 +97,8 @@ namespace CRM_DB
 
         public Citizen GetByLogin(string login)
         {
-            var citizenList = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE login=@login", new { login = login });
-            return citizenList;
+            var citizen = Connection.QueryFirst<Citizen>(SqlSelectCommand + " WHERE login=@login", new { login = login });
+            return citizen;
         }
 
         public List<Citizen> GetLikeByEponimo(string Eponimo)
@@ -120,6 +120,11 @@ namespace CRM_DB
         }
         public Citizen Authenticate(string Login, string nonHasheddPassword)
         {
+            var citizen = GetByLogin(Login);
+            if (citizen.password == nonHasheddPassword)
+            {
+                return citizen;
+            }
             return null;
         }
 
