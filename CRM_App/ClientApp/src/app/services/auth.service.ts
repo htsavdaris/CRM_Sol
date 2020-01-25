@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   authenticate(user): Observable<User> {
-    return this.http.post<User>(this.myAppUrl + this.myApiUrl, JSON.stringify(user), this.httpOptions)
+    return this.http.post<User>(this.myAppUrl + this.myApiUrl + 'authenticate', JSON.stringify(user), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)

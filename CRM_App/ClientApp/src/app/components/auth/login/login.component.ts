@@ -3,6 +3,10 @@ import { Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatCard, MatCardTitle } from '@angular/material';
 import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../models/user';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,23 +14,33 @@ import { AuthService } from '../../../services/auth.service';
 })
 
 export class LoginComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+  loginform: FormGroup = new FormGroup({
+    login: new FormControl(''),
     password: new FormControl(''),
   });
 
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
+  constructor(private authService: AuthService, private router: Router  ) { }
+
+
+  authenticate() {
+    let tuser = new User();
+    tuser.login = 'admin';
+    tuser.login = this.loginform.get('login').value;
+    tuser.password = this.loginform.get('password').value;
+    if (this.loginform.valid) {
+      this.authService.authenticate(tuser).subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['home']);
+        }
+      )
     }
   }
-  constructor(public authService:AuthService) { }
+
+  
 
   ngOnInit() {
   }
 
-  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();
 
 }
