@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   authenticate() {
     let tuser = new User();
-    tuser.login = 'admin';
     tuser.login = this.loginform.get('login').value;
     tuser.password = this.loginform.get('password').value;
     if (this.loginform.valid) {

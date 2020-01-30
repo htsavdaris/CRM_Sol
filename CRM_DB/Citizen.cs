@@ -118,6 +118,8 @@ namespace CRM_DB
             var identity = Connection.Insert<Citizen>(citizen);
             return true;
         }
+
+
         public Citizen Authenticate(string Login, string nonHasheddPassword)
         {
             var citizen = GetByLogin(Login);
@@ -127,6 +129,7 @@ namespace CRM_DB
             }
             return null;
         }
+
 
         public bool Update(Citizen citizen)
         {

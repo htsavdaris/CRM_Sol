@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
+import { Citizen } from '../models/citizen';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,15 @@ export class AuthService {
       );
   }
 
+  register(citizen): Observable<Citizen> {
+    console.log('Citizen');
+    console.log(citizen);
+    return this.http.post<Citizen>(this.myAppUrl + this.myApiUrl + 'register', JSON.stringify(citizen), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
+  }
 
   errorHandler(error) {
     let errorMessage = '';
