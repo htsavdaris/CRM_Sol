@@ -12,6 +12,7 @@ import { Citizen } from '../../../models/citizen';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
   registerform: FormGroup = new FormGroup({
     firstname: new FormControl(''),
@@ -30,16 +31,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    console.log('Register call');
+    console.log(this.registerform.controls['firstname'].value);
     let tuser = new Citizen();
     tuser.citizenid = 0;
-    tuser.amka = '';
+    tuser.amka = 'rarar';
     tuser.afm = '';
-    tuser.onoma = this.registerform.get('firstname').value;
+    tuser.onoma = this.registerform.controls['firstname'].value;
     tuser.eponimo = this.registerform.get('lastname').value;
     tuser.patronimo = '';
     tuser.mitronimo = '';
-    tuser.hmerominiaGenisis = null;
-    tuser.poliGenisis = '';
+    tuser.hmerominiagenisis = new Date('1/1/1900');
+    tuser.poligenisis = '';
     tuser.tilefono = '';
     tuser.kinito = this.registerform.get('mobile').value;
     tuser.eMail = this.registerform.get('email').value;

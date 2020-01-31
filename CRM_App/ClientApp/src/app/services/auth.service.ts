@@ -38,7 +38,7 @@ export class AuthService {
 
   register(citizen): Observable<Citizen> {
     console.log('Citizen');
-    console.log(citizen);
+    console.log(JSON.stringify(citizen));
     return this.http.post<Citizen>(this.myAppUrl + this.myApiUrl + 'register', JSON.stringify(citizen), this.httpOptions)
       .pipe(
         retry(1),

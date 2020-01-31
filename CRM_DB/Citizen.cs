@@ -19,7 +19,7 @@ namespace CRM_DB
         public string Eponimo { get; set; }
         public string Patronimo { get; set; }
         public string Mitronimo { get; set; }
-        public System.DateTime HmerominiaGenisis { get; set; }
+        public System.DateTime? HmerominiaGenisis { get; set; }
         public string PoliGenisis { get; set; }
         public string Tilefono { get; set; }
         public string Kinito { get; set; }

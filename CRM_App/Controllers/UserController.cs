@@ -75,6 +75,7 @@ namespace CRM_App.Controllers
             string connStr = configuration.GetConnectionString("DefaultConnection");
             Citizen user;
             bool success;
+            userDto.HmerominiaGenisis = null;
             using (CitizenDac dac = new CitizenDac(connStr))
             {
                 //success  = dac.Register(userDto);

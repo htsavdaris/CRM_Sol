@@ -6,8 +6,8 @@ export class Citizen {
   public eponimo: string;
   public patronimo: string;
   public mitronimo: string;
-  public hmerominiaGenisis: Date;
-  public poliGenisis;
+  public hmerominiagenisis: Date;
+  public poligenisis;
   public tilefono: string;
   public kinito: string;
   public eMail: string;
