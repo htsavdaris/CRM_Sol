@@ -19,7 +19,7 @@ namespace CRM_DB
         public string Eponimo { get; set; }
         public string Patronimo { get; set; }
         public string Mitronimo { get; set; }
-        public System.DateTime HmerominiaGenisis { get; set; }
+        public System.DateTime? HmerominiaGenisis { get; set; }
         public string PoliGenisis { get; set; }
         public string Tilefono { get; set; }
         public string Kinito { get; set; }
@@ -113,11 +113,13 @@ namespace CRM_DB
             return identity;
         }
         
-        public long Register(Citizen citizen)
+        public bool Register(Citizen citizen)
         {
             var identity = Connection.Insert<Citizen>(citizen);
-            return identity;
+            return true;
         }
+
+
         public Citizen Authenticate(string Login, string nonHasheddPassword)
         {
             var citizen = GetByLogin(Login);
@@ -126,16 +128,6 @@ namespace CRM_DB
                 return citizen;
             }
             return null;
-        }
-
-        public bool CheckLoginAvailability(string Login)
-        {
-            var citizen = GetByLogin(Login);
-            if (citizen != null)
-            {
-                return false;
-            }
-            return true;
         }
 
 

@@ -74,15 +74,18 @@ namespace CRM_App.Controllers
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
             Citizen user;
-            long id;
+            bool success;
+            userDto.HmerominiaGenisis = null;
             using (CitizenDac dac = new CitizenDac(connStr))
             {
-                id = dac.Register(userDto);
+                //success  = dac.Register(userDto);
+                success = true;
             }
-          
+
+            // return basic user info (without password) and token to store client side
             return Ok(new
             {
-                Id = id
+               result = success
             });
         }
     }
