@@ -66,5 +66,24 @@ namespace CRM_App.Controllers
                 Token = tokenString
             });
         }
+
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody]Citizen userDto)
+        {
+            string connStr = configuration.GetConnectionString("DefaultConnection");
+            Citizen user;
+            long id;
+            using (CitizenDac dac = new CitizenDac(connStr))
+            {
+                id = dac.Register(userDto);
+            }
+          
+            return Ok(new
+            {
+                Id = id
+            });
+        }
     }
 }

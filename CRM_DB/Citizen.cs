@@ -113,10 +113,10 @@ namespace CRM_DB
             return identity;
         }
         
-        public bool Register(Citizen citizen)
+        public long Register(Citizen citizen)
         {
             var identity = Connection.Insert<Citizen>(citizen);
-            return true;
+            return identity;
         }
         public Citizen Authenticate(string Login, string nonHasheddPassword)
         {
@@ -127,6 +127,17 @@ namespace CRM_DB
             }
             return null;
         }
+
+        public bool CheckLoginAvailability(string Login)
+        {
+            var citizen = GetByLogin(Login);
+            if (citizen != null)
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         public bool Update(Citizen citizen)
         {
