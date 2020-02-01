@@ -33,19 +33,12 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log('Register call');
     console.log(this.registerform.controls['firstname'].value);
-    let tuser = new Citizen();
-    tuser.citizenid = 0;
-    tuser.amka = 'rarar';
-    tuser.afm = '';
-    tuser.onoma = this.registerform.controls['firstname'].value;
-    tuser.eponimo = this.registerform.get('lastname').value;
-    tuser.patronimo = '';
-    tuser.mitronimo = '';
-    tuser.hmerominiagenisis = new Date('1/1/1900');
-    tuser.poligenisis = '';
-    tuser.tilefono = '';
-    tuser.kinito = this.registerform.get('mobile').value;
-    tuser.eMail = this.registerform.get('email').value;
+    let tuser = new User();
+    tuser.userid = 0;
+    tuser.firstname = this.registerform.controls['firstname'].value;
+    tuser.lastname = this.registerform.get('lastname').value;
+    tuser.mobile = this.registerform.get('mobile').value;
+    tuser.email = this.registerform.get('email').value;
     tuser.login = this.registerform.get('login').value;
     tuser.password = this.registerform.get('password').value;
     if (this.registerform.valid) {

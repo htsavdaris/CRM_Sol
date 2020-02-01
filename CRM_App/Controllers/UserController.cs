@@ -32,8 +32,8 @@ namespace CRM_App.Controllers
         public IActionResult Authenticate([FromBody]UserAuth userDto)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            Citizen user;
-            using (CitizenDac dac = new CitizenDac(connStr))
+            User user;
+            using (UserDac dac = new UserDac(connStr))
             {
                 user = dac.Authenticate(userDto.login, userDto.password);
             }
@@ -48,7 +48,7 @@ namespace CRM_App.Controllers
            {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.CitizenID.ToString())
+                    new Claim(ClaimTypes.Name, user.userid.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -59,10 +59,10 @@ namespace CRM_App.Controllers
             // return basic user info (without password) and token to store client side
             return Ok(new
             {
-                Id = user.CitizenID,
+                Id = user.userid,
                 login = user.login,
-                Onoma = user.Onoma,
-                Eponimo = user.Eponimo,
+                Onoma = user.firstname,
+                Eponimo = user.lastname,
                 Token = tokenString
             });
         }
@@ -70,16 +70,15 @@ namespace CRM_App.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody]Citizen userDto)
+        public IActionResult Register([FromBody]User userDto)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            Citizen user;
             bool success;
-            userDto.HmerominiaGenisis = null;
-            using (CitizenDac dac = new CitizenDac(connStr))
+            
+            using (UserDac dac = new UserDac(connStr))
             {
-                //success  = dac.Register(userDto);
-                success = true;
+                success  = dac.Register(userDto);
+                //success = true;
             }
 
             // return basic user info (without password) and token to store client side

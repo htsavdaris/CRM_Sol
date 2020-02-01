@@ -5,6 +5,7 @@ import { MatCard, MatCardTitle } from '@angular/material';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user';
 import { Router } from '@angular/router';
+import { Userauth } from '../../../models/userauth';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 
   authenticate() {
-    let tuser = new User();
+    let tuser = new Userauth();
     tuser.login = this.loginform.get('login').value;
     tuser.password = this.loginform.get('password').value;
     if (this.loginform.valid) {

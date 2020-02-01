@@ -23,11 +23,11 @@ namespace CRM_App.Controllers
 
         // GET: api/Citizen
         [HttpGet, AllowAnonymous]
-        public ActionResult<List<Citizen>> Get()
+        public ActionResult<List<CitizenProfile>> Get()
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            List<Citizen> citizenList;
-            using (CitizenDac dac = new CitizenDac(connStr))
+            List<CitizenProfile> citizenList;
+            using (CitizenProfileDac dac = new CitizenProfileDac(connStr))
             {
                 citizenList = dac.GetAll();
                 return Ok(citizenList);
@@ -36,11 +36,11 @@ namespace CRM_App.Controllers
 
         // GET: api/Citizen/5
         [HttpGet("{id}"), AllowAnonymous]
-        public ActionResult<Citizen> Get(long id)
+        public ActionResult<CitizenProfile> Get(long id)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            Citizen citizen;
-            using (CitizenDac dac = new CitizenDac(connStr))
+            CitizenProfile citizen;
+            using (CitizenProfileDac dac = new CitizenProfileDac(connStr))
             {
                 citizen = dac.Get(id);
                 return Ok(citizen);
@@ -49,10 +49,10 @@ namespace CRM_App.Controllers
 
         // POST: api/Citizen
         [HttpPost, AllowAnonymous]
-        public IActionResult Post([FromBody] Citizen citizen)
+        public IActionResult Post([FromBody] CitizenProfile citizen)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            using (CitizenDac dac = new CitizenDac(connStr))
+            using (CitizenProfileDac dac = new CitizenProfileDac(connStr))
             {
                 long id = dac.Insert(citizen);
                 return CreatedAtRoute("Citizen", new { id = id }, citizen);
@@ -61,10 +61,10 @@ namespace CRM_App.Controllers
 
         // PUT: api/Citizen/5
         [HttpPut("{id}"), AllowAnonymous]
-        public IActionResult Put(int id, [FromBody] Citizen citizen)
+        public IActionResult Put(int id, [FromBody] CitizenProfile citizen)
         {
             string connStr = configuration.GetConnectionString("DefaultConnection");
-            using (CitizenDac dac = new CitizenDac(connStr))
+            using (CitizenProfileDac dac = new CitizenProfileDac(connStr))
             {
                 bool isSuccess = dac.Update(citizen);
             }
