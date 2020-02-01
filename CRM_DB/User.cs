@@ -7,6 +7,7 @@ using Dapper;
 using Dapper.Contrib;
 using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics;
 
 namespace CRM_DB
 {
@@ -26,7 +27,7 @@ namespace CRM_DB
     public class UserDac : BaseDac
     {
 
-        public const string SqlTableName = "User";
+        public const string SqlTableName = "[User]";
         public const string SqlSelectCommand = "SELECT * FROM " + SqlTableName + " ";
 
 
@@ -124,10 +125,12 @@ namespace CRM_DB
         }
 
 
-        public User Authenticate(string Login, string nonHasheddPassword)
+        public User Authenticate(string Login, string providedPassword)
         {
             var user = GetByLogin(Login);
-            if (user.password == nonHasheddPassword)
+            PasswordHasher<string> pw = new PasswordHasher<string>();
+            PasswordVerificationResult res = pw.VerifyHashedPassword(Login, user.password,providedPassword);
+            if (res == PasswordVerificationResult.Success)
             {
                 return user;
             }
