@@ -16,4 +16,15 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  onProfile() {
+
+  }
+
+
+
+  logout() {
+
+  }
+
 }
