@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Userauth } from '../models/userauth';
@@ -11,7 +11,9 @@ import { Userauth } from '../models/userauth';
 export class AuthService {
   public myAppUrl: string;
   myApiUrl: string;
-  private authenticated: boolean;
+  private isLoggedIn: boolean;
+  public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
@@ -25,7 +27,7 @@ export class AuthService {
 
 
   isAuthenticated(): boolean {
-    return this.authenticated;
+    return this.isLoggedIn;
   }
 
   authenticate(user): Observable<Userauth> {
@@ -44,6 +46,10 @@ export class AuthService {
         retry(1),
         catchError(this.errorHandler)
       );
+  }
+
+  logout() {
+    localStorage.removeItem('authtoken');
   }
 
   errorHandler(error) {
